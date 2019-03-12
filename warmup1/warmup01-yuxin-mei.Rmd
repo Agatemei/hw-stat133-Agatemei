@@ -1,0 +1,127 @@
+---
+title: "Warmup01"
+author: "Yuxin Mei"
+date: "2/15/2019"
+output: github_document
+---
+
+## Star Wars
+
+### Bo Keevil
+
+A famous quote by _Bo Keevil_:
+
+> "It's out of control. We're not going to make it."
+
+<div align=center>
+![](https://vignette.wikia.nocookie.net/starwars/images/3/31/SWResistance-BoKeevil.jpeg/revision/latest?cb=20180914194242) 
+</div>
+
+&nbsp;
+
+|Description|Value|
+|-----------|-----|
+|Homeworld|Dorin|
+|Species|Kel Dor|
+|Gender|Male|
+|Skin color|Yellow|
+|Affiliation(s)|Ace Squadron|
+
+[See more about Bo Keevil.](https://starwars.fandom.com/wiki/Bo_Keevil)
+
+------
+
+## Cooking Recipe
+
+### Chocolate Puddle Cakes
+
+<div align=center>
+![](https://farm8.staticflickr.com/7820/46164693625_5c9a8253d5_z.jpg)
+</div>
+
+&nbsp;
+
+> That this cake has __6 ingredients__, basically pantry staples? That it takes __5 minutes__ to assemble in a __single__ bowl, and __7 to bake__? 
+
+- Ingredients:
+    - 4 tablespoons (55 grams) unsalted butter, cut into chunks, plus more for dishes
+    - 2 teaspoons cocoa powder, plus more for dusting
+    - 3 ounces (85 grams) bittersweet chocolate, roughly chopped
+    - 1/8 teaspoon fine sea salt or a couple pinches of flaky salt
+    - 1 to 2 tablespoons (13 to 25 grams) granulated sugar (see Note)
+    - 1 large egg
+    - 1 egg yolk
+
+&nbsp;
+
+- Kitchen tools: 
+    Basically pantry stapples. Oven, bowls and other common tools will be needed. 
+
+&nbsp;
+
+- Steps:
+    1. Molten center: simply spoon in half the batter, add your filling in centered dollop, spoon the remaining batter on top. The _sugar_ is a bit variable here. 
+    2. Heat oven to 450 degrees F. 
+    3. Butter two 6-ounce ramekins or baking cups, making sure not to miss any spots. Spoon a little cocoa powder in each and pat it around so it coats the bottom and sides, then knock the excess out.
+    4. Place 4 tablespoons butter and chocolate in a medium heatproof bowl and — either in the microwave or set over a pot of gently simmering water — melt the butter and chocolate about two-thirds of the way, then whisk until it finishes melting.
+    <div align=center>
+    ![](https://farm8.staticflickr.com/7899/47026028022_db208daa49_z.jpg)
+    </div>
+    5. Whisk in sugar and salt. Whisk in egg and yolk and beat a good 20 to 30 extra times, to ensure mixture is smooth, glossy, and a bit lightened. Add 2 teaspoons cocoa powder and whisk until combined.
+    <div align=center>
+    ![](https://farm8.staticflickr.com/7886/46164694845_c86e6f850d_z.jpg)
+    ![](https://farm8.staticflickr.com/7903/46164694615_141a13386f_z.jpg)
+    </div>
+    6. Divide between two baking dishes. Bake 7 to 9 minutes (7 will be the most molten in the center, 9 the least but still gooey) and transfer to a cooling rack for 1 minute. 
+    <div align=center>
+    ![](https://farm8.staticflickr.com/7901/46164694345_8594fb2efb_z.jpg)
+    </div>
+    7. Wearing pot holders, place a small dessert plate over your first ramekin. Flip it onto the plate, count to ten, then lift the cup off.
+    <div align=center>
+    ![](https://farm8.staticflickr.com/7891/46164693915_120629826e_z.jpg)
+    </div>
+    8. Repeat with second cake. Dust with cocoa powder or powdered sugar. Serve with barely sweetened whipped cream, a little ice cream, berries, or absolutely nothing at all. 
+    9. __Eat immediately__.  
+    
+    __Do ahead__: You can make the batter and fill the prepared cups, then refrigerate until you want to bake them. They can go into the oven directly from the fridge, but will need to bake 1 to 2 minutes longer.
+
+&nbsp;
+
+- Special season? 
+    Enjoy it at any time!
+
+&nbsp;
+    
+- Variations? Using other ingredients?
+    you can put a spoonful of __almost anything__ in the middle _(Nutella, cold butterscotch or caramel sauce or these caramel squares, raspberry sauce, not to mention all of the ways you can flavor chocolate, such as with espresso powder, mint extract, citrus zest, and more)_ and it will become one with the molten center upon baking and everyone will think you are even more of a magician. 
+    In _Step 1_,the __sugar__ is a bit variable. With a solidly bittersweet __chocolate__ bar (70 to 72%), 1 tablespoon sugar is preferred, although 2 tablespoons is closer to the standard amount. With less bittersweet/more semisweet chocolate (60%), skipping it is ok. If you’re using __salted butter__, you can skip the additional __salt__, or just add a pinch of flakes for crunch. 
+
+-----
+
+## Euclidean Distance
+
+### Definition
+
+-----
+
+The __Euclidean distance__ between points __p__ and __q__ is the length of the __line segment__ connecting them ($ \overline{\mathbf{pq}} $). 
+
+
+In Cartesian coordinates, if p = (p1, p2,..., pn) and q = (q1, q2,..., qn) are two points in __Euclidean n-space__, then the distance (d) from __p__ to __q__, or from __q__ to __p__ is given by the Pythagorean formula:
+ 
+$$
+\begin{align*} 
+d(\mathbf{p},\mathbf{q}) =  d(\mathbf{q},\mathbf{p}) &= \sqrt{(q_{1}-p_{1})^{2}+(q_{2}-p_{2})^{2}+\cdots+(q_{n}-p_{n})^{2}} \\ 
+&= \sqrt{\sum_{i=1}^{n}(q_{i}-p_{i})^{2}}. 
+\end{align*}
+$$ 
+
+The position of a point in a Euclidean n-space is a __Euclidean vector__. So, __p__ and __q__ may be represented as Euclidean vectors, starting from the origin of the space (initial point) with their tips (terminal points) ending at the two points. The __Euclidean norm__, or __Euclidean length__, or __magnitude__ of a vector measures the length of the vector:
+
+$$
+\|\mathbf{p}\| = \sqrt{q_{1}^{2} + q_{2}^{2} + \cdots + q_{n}^{2}} = \sqrt{\mathbf{p} \cdot \mathbf{p}}
+$$
+
+where the last expression involves the __dot product__.
+
+
