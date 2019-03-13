@@ -1,0 +1,148 @@
+---
+title: 'GSW Shot Charts: Report'
+author: "Yuxin Mei"
+date: "3/12/2019"
+output: github_document
+---
+
+## 0) Library Some Packages in R
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(knitr)
+```
+
+
+-----
+
+
+## 1) Effective Shooting Percentage
+
+
+Read the data in shots-data.csv:
+
+```{r}
+shots <- read.csv(file = "../data/shots-data.csv", stringsAsFactors =  FALSE)
+```
+
+
+- __2PT Effective Shooting % by Player__: (descending order)
+
+```{r}
+TwoPT_Effective_Shooting <- shots %>%
+  filter(shot_type == "2PT Field Goal") %>%
+  group_by(name) %>%
+  summarise(total = length(shot_made_flag), made = sum(shot_made_flag == "shot_yes"), perc_made = made / total) %>%
+  select(name, total, made, perc_made) %>%
+  arrange(desc(perc_made))  
+
+kable(TwoPT_Effective_Shooting)
+```
+
+
+- __3PT Effective Shooting % by Player__: (descending order)
+
+```{r}
+ThreePT_Effective_Shooting <- shots %>%
+  filter(shot_type == "3PT Field Goal") %>%
+  group_by(name) %>%
+  summarise(total = length(shot_made_flag), made = sum(shot_made_flag == "shot_yes"), perc_made = made / total) %>%
+  select(name, total, made, perc_made) %>%
+  arrange(desc(perc_made))
+
+kable(ThreePT_Effective_Shooting) 
+```
+
+
+- __Effective Shooting % by Player__: (descending order)
+
+```{r}
+Effective_Shooting <- shots %>%
+  group_by(name) %>%
+  summarise(total = length(shot_made_flag), made = sum(shot_made_flag == "shot_yes"), perc_made = made / total) %>%
+  select(name, total, made, perc_made) %>%
+  arrange(desc(perc_made))
+
+kable(Effective_Shooting) 
+```
+
+
+-----
+
+
+## 2) Narrative
+
+### 1. __Introduction__:
+
+Being 1st in NBA Western Conference, Golden State Warriors (GSW) did such a great job in 2016-17 season! And we're now analysing five players in this woderful team! They are [Kevin Durant](https://en.wikipedia.org/wiki/Kevin_Durant), [Andre Iguodala](https://en.wikipedia.org/wiki/Andre_Iguodala), [Klay Thompson](https://en.wikipedia.org/wiki/Klay_Thompson), [Stephen Curry](https://en.wikipedia.org/wiki/Stephen_Curry), and [Draymond Green](https://en.wikipedia.org/wiki/Draymond_Green).
+  
+![](https://cdn.nba.net/nba-drupal-prod/styles/landscape_2090w/s3/2017-12/GettyImages-684463444.jpg?itok=CMilmuEa)
+ 
+We have the data of their action type, shot type, shot distance, shot position and time left after the shot in each game. By summarising and visualizing, we can compare the information of five players and figure out some of their personal characteristics.
+
+### 2. __Basic Information of Five Players__ (from data)
+
+- __Effective Shooting Percentage__:  
+     
+From the diagrams in previous section, total shots, made shots and percentage are listed for each player.  
+Stephen Curry and Klay Thompson made the most total shots while Kevin Durant and Andre Iguodala had the highest hitting accuracy that over 50%. Andre Iguodala had the highest 2PT Effective Shooting of over 60%. Stephen Curry and Klay Thompson, performed relatively better when they made 3PT shots with the effective percentage of over 40%. 
+    
+- __Total Shots__:  
+     
+Notice here _Andre Iguodala_ had far less total shots than others, he tends to guard more than shooting. _Draymond Green_ also failed to shoot more than 600 times, half of the _Stephen Curry_ and _Klay Thompson_'s record. However, he was found to be good at assisting. From [Wikipedia](https://en.wikipedia.org/wiki/Draymond_Green), we know that "on February 10, 2017, Green scored only four points but finished with 12 rebounds, 10 assists and 10 steals as the Warriors defeated the Memphis Grizzlies 122–107." And "his triple-double was the first in NBA history with fewer than 10 points scored. It also was only the second in NBA history with at least 10 rebounds, 10 assists and 10 steals in a game."
+    
+- __Shot Type__:  
+
+```{r echo=FALSE}
+kable(
+  shots %>% group_by(name) %>% summarise(TwoPT_total = sum(shot_type == "2PT Field Goal"), ThreePT_total = sum(shot_type == "3PT Field Goal"), total = length(shot_type)) %>% select(name, TwoPT_total, ThreePT_total, total)
+)
+```  
+  
+It can be easily found that _Stephen Kurry_ prefered shooting from a far distance and he was the only one that tried three-point shots more than two-point shots. _Kevin Durant_, on the other hand, made two-point shots approximately three times as many as three-point shots. He showed the tendency of focusing on shooting closer to backboard. Klay Thompson showed no obvious preference to either two-point shots or three-point shots. Andre Iguodala and Draymond Green might choose two-point shots more often.
+
+- __Action Type__:
+
+```{r echo=FALSE}
+shots$action_type <- as.factor(shots$action_type)
+
+Stephen_Curry <- shots %>% filter(name == "Stephen Curry") %>% select(action_type) %>% group_by(action_type)
+Stephen_Curry <- as.data.frame(summary(Stephen_Curry)[c(1,2),])
+
+Klay_Thompson <- shots %>% filter(name == "Klay Thompson") %>% select(action_type) %>% group_by(action_type)
+Klay_Thompson <- as.data.frame(summary(Klay_Thompson)[c(1,2),])
+
+Kevin_Durant <- shots %>% filter(name == "Kevin Durant") %>% select(action_type) %>% group_by(action_type)
+Kevin_Durant <- as.data.frame(summary(Kevin_Durant)[c(1,2),])
+
+Draymond_Green <- shots %>% filter(name == "Draymond Green") %>% select(action_type) %>% group_by(action_type)
+Draymond_Green <- as.data.frame(summary(Draymond_Green)[c(1,2),])
+
+Andre_Iguodala <- shots %>% filter(name == "Andre Iguodala") %>% select(action_type) %>% group_by(action_type)
+Andre_Iguodala <- as.data.frame(summary(Andre_Iguodala)[c(1,2),])
+
+Action_Type <- cbind(Andre_Iguodala, Draymond_Green, Kevin_Durant, Klay_Thompson, Stephen_Curry)
+
+colnames(Action_Type) <- c("Andre Iguodala", "Draymond Green", "Kevin Durant", "Klay Thompson", "Stephen Curry")
+
+kable(Action_Type)
+```
+
+As shown in the table, __Jump Shot__ is the most prefered action type for all of the five players. Except _Draymond Green_, others' second choice is __Pullup Jump Shot__. _Draymond Green_ choosed __Layup Shot__ instead.
+
+- __Shooting Position__:  
+
+```{r out.width='80%', echo=FALSE, fig.align='center'}
+knitr::include_graphics("../images/gsw-shot-charts.png")
+```
+
+The image contains five players' shooting positions. The amount of points directly shows the number of total shots made by each player, which corresponds to the analysis in the previous __Total Shots__.
+  
+What capture my eye at first are the points even further out of the three-point line. Although _Klay Thompson_ and _Stephen Curry_ shot quite often out of the three-point line, _Klay Thompson_ seldom tried further shooting while _Stephen Curry_ shot even in the Backcourt. _Kevin Durant_ rarely shot behind the line noted 300 in the image.
+
+It's found that there are some blanks just within the three-point line, which means the places there are relatively hard, or considered not the best,  to make shot. The prefered shooting positions by all of the five player are places below the basket and out of three-point line (and close to it).
+
+### 3. __Summary__
+
+As in part 2, Effective Shooting Percentage, Total Shots, Shot Type, Action Type, and Shooting Position are analysed. Five players had something in common but still kept their personal characteristics.
